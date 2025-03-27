@@ -4,48 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ZeroCoderKurs.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/bot_launcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/context_processors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/middleware.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/payments.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/runbot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/task.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/account_login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/signup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_logout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_signup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/action.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/bot_info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/cart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_bouquets.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_flowers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_gorshok.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/favorites.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -270,7 +229,28 @@
       <option name="presentableId" value="Default" />
       <updated>1742401880258</updated>
     </task>
+    <task id="LOCAL-00001" summary="new project">
+      <option name="closed" value="true" />
+      <created>1743064556970</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743064556971</updated>
+    </task>
+    <task id="LOCAL-00002" summary="new project">
+      <option name="closed" value="true" />
+      <created>1743064714035</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743064714035</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new project" />
+    <option name="LAST_COMMIT_MESSAGE" value="new project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
