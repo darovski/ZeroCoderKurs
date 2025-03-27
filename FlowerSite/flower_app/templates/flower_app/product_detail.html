@@ -1,0 +1,73 @@
+{% extends 'flower_app/base.html' %}
+
+{% block content %}
+<style>
+    .product-detail-container {
+        background: rgba(26, 26, 46, 0.9);
+        border: 1px solid rgba(255, 153, 204, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        margin-top: 2rem;
+    }
+
+    .product-image {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .product-info {
+        color: #e0e0e0;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6 product-info">
+            <div class="product-detail-container">
+                <h2>{{ product.name }}</h2>
+                <p class="text-muted">{{ product.category.name }}</p>
+                <hr>
+
+                <h3 class="my-4">{{ product.price }} руб.</h3>
+
+                <p>{{ product.description }}</p>
+
+                <div class="product-actions">
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'flower_app:add-to-cart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-custom">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </form>
+
+                        <form action="{% url 'flower_app:favorite-add' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-custom">
+                                <i class="fas fa-heart"></i> В избранное
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-custom">
+                            <i class="fas fa-sign-in-alt"></i> Войдите для покупок
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

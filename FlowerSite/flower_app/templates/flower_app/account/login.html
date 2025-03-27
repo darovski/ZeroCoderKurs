@@ -1,0 +1,12 @@
+{% extends "flower_app/base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Вход</h2>
+    <form method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+</div>
+{% endblock %}

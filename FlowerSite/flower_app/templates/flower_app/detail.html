@@ -1,0 +1,117 @@
+{% extends "flower_app/base.html" %}
+{% load static humanize %}
+
+{% block content %}
+<style>
+    .cart-container {
+        background: rgba(26, 26, 46, 0.95);
+        border: 1px solid rgba(255, 153, 204, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .cart-item {
+        background: rgba(40, 40, 60, 0.7);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 153, 204, 0.2);
+    }
+
+    .cart-total {
+        font-size: 1.5rem;
+        color: #ff99cc;
+        text-align: right;
+    }
+
+    .btn-cart {
+        background: linear-gradient(45deg, #ff99cc, #ff66b3);
+        border: none;
+        color: #1a1a2e;
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-cart:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 153, 204, 0.3);
+    }
+</style>
+
+<div class="container py-5">
+    <div class="cart-container">
+        <h1 class="text-center mb-4" style="color: white;;">
+            <i class="fas fa-shopping-cart"></i> Ваша корзина
+        </h1>
+
+        {% if cart.items.all %}
+            {% for item in cart.items.all %}
+            <div class="cart-item">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <img src="{{ item.product.image.url }}"
+                             alt="{{ item.product.name }}"
+                             class="img-fluid rounded"
+                             style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-4">
+                        <h4>{{ item.product.name }}</h4>
+                        <p class="text-muted">{{ item.product.category.name }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <form action="{% url 'flower_app:update' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="number"
+                                       name="quantity"
+                                       value="{{ item.quantity }}"
+                                       min="1" max="99"
+                                       class="form-control"
+                                       style="background: rgba(40,40,60,0.9); color: white;">
+                                <button type="submit" class="btn btn-sm btn-cart">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <h5>{{ item.total_price|floatformat:"0"|intcomma }} ₽</h5>
+                    </div>
+                    <div class="col-md-1 text-end">
+                        <a href="{% url 'flower_app:remove' item.product.id %}"
+                           class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="cart-total mt-4">
+                Итого: {{ cart.total_price|floatformat:"0"|intcomma }} ₽
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{% url 'flower_app:catalog_flowers' %}" class="btn-cart me-3">
+                    <i class="fas fa-arrow-left"></i> Продолжить покупки
+                </a>
+
+                <a href="{% url 'flower_app:order_create' %}" class="btn-cart">
+                    Оформить заказ <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <h4 style="color: white;;">Ваша корзина пуста</h4>
+                <a href="{% url 'flower_app:catalog_flowers' %}" class="btn-cart mt-3">
+                    <i class="fas fa-store"></i> В магазин
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

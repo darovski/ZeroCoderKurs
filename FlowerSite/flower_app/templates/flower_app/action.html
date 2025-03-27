@@ -1,0 +1,173 @@
+{% extends 'flower_app/base.html' %}
+
+{% block content %}
+<style>
+    .promo-container {
+        background: rgba(26, 26, 46, 0.9);
+        border: 1px solid rgba(255, 153, 204, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+    }
+
+    .promo-header {
+        color: #ff99cc;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .promo-header:after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #ff99cc, transparent);
+        margin: 1rem auto 0;
+    }
+
+    .promo-card {
+        background: rgba(40, 40, 70, 0.7);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 153, 204, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .promo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 153, 204, 0.2);
+        border-color: rgba(255, 153, 204, 0.4);
+    }
+
+    .promo-tag {
+        background: #ff3385;
+        color: white;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .promo-title {
+        color: #ff99cc;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .promo-dates {
+        color: #aaa;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .promo-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .promo-products {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px dashed rgba(255, 153, 204, 0.2);
+    }
+
+    .product-badge {
+        display: inline-block;
+        background: rgba(255, 153, 204, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .countdown {
+        font-family: 'Courier New', monospace;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="promo-container">
+        <div class="promo-header">
+            <h1><i class="fas fa-star"></i> Акции и специальные предложения</h1>
+            <p class="text-muted">Только сейчас - эксклюзивные скидки на наши лучшие товары</p>
+        </div>
+
+        <!-- Акция 1 -->
+        <div class="promo-card">
+            <span class="promo-tag">-30%</span>
+            <h3 class="promo-title">Скидка на все розы</h3>
+            <p class="promo-dates"><i class="far fa-calendar-alt"></i> 1 июня - 15 июня 2023</p>
+            <img src="https://example.com/promo-roses.jpg" class="promo-image" alt="Акция на розы">
+            <p>Дарите любовь с нашими роскошными розами со скидкой 30% на весь ассортимент.</p>
+
+            <div class="promo-products">
+                <span class="product-badge">Красные розы</span>
+                <span class="product-badge">Белые розы</span>
+                <span class="product-badge">Розовые розы</span>
+            </div>
+
+            <div class="countdown">
+                <i class="fas fa-clock"></i> До конца акции: 12д 06ч 45м
+            </div>
+        </div>
+
+        <!-- Акция 2 -->
+        <div class="promo-card">
+            <span class="promo-tag">Подарок</span>
+            <h3 class="promo-title">3-й букет в подарок</h3>
+            <p class="promo-dates"><i class="far fa-calendar-alt"></i> 10 июня - 30 июня 2023</p>
+            <img src="https://example.com/promo-bouquet.jpg" class="promo-image" alt="Акция 3 букета">
+            <p>При покупке двух любых букетов - третий в подарок! Выбирайте из нашего летнего ассортимента.</p>
+
+            <div class="promo-products">
+                <span class="product-badge">Летний рассвет</span>
+                <span class="product-badge">Морской бриз</span>
+                <span class="product-badge">Солнечный день</span>
+            </div>
+        </div>
+
+        <!-- Акция 3 -->
+        <div class="promo-card">
+            <span class="promo-tag">-20%</span>
+            <h3 class="promo-title">Скидка на свадебные букеты</h3>
+            <p class="promo-dates"><i class="far fa-calendar-alt"></i> 1 июня - 31 июля 2023</p>
+            <img src="https://example.com/promo-wedding.jpg" class="promo-image" alt="Свадебные букеты">
+            <p>Специальное предложение для невест - 20% на все свадебные букеты и оформление.</p>
+
+            <div class="promo-products">
+                <span class="product-badge">Свадебный букет невесты</span>
+                <span class="product-badge">Бутоньерки</span>
+                <span class="product-badge">Оформление зала</span>
+            </div>
+
+            <div class="countdown">
+                <i class="fas fa-clock"></i> До конца акции: 45д 12ч 30м
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Пример скрипта для обратного отсчета (можно реализовать более полноценный вариант)
+    function updateCountdowns() {
+        // Здесь должна быть логика обновления таймеров
+        console.log("Обновление таймеров акций...");
+    }
+    setInterval(updateCountdowns, 60000);
+</script>
+{% endblock %}

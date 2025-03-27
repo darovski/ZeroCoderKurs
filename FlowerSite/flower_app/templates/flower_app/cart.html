@@ -1,0 +1,6 @@
+{% for item in cart.cartitem_set.all %}
+<div class="cart-item">
+    <h4>{{ item.product.name }}</h4>
+    <p>Количество: {{ item.quantity }}</p>
+</div>
+{% endfor %}

@@ -1,0 +1,267 @@
+{% extends "flower_app/base.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Заголовок с анимированным цветком -->
+            <div class="text-center mb-4">
+                <i class="fas fa-spa fa-3x mb-3" style="color: #ff99cc; animation: pulse 2s infinite"></i>
+                <h1 class="auth-title">Добро пожаловать в наш цветочный рай</h1>
+                <p class="text-muted">Создайте аккаунт для доступа к персональным предложениям</p>
+            </div>
+
+            <!-- Форма регистрации -->
+            <form class="signup" id="signup_form" method="post" action="{% url 'flower_app:account_signup' %}">
+                {% csrf_token %}
+
+                <!-- Блок ошибок -->
+                {% if form.errors %}
+                <div class="alert alert-dark">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Основные поля -->
+                <div class="row g-3">
+                    <!-- Имя -->
+                    <div class="col-md-6">
+                        <div class="form-group floating-label">
+                            <input type="text" name="first_name" id="id_first_name" class="form-control" required>
+                            <label for="id_first_name">
+                                <i class="fas fa-user me-2"></i>Имя
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Фамилия -->
+                    <div class="col-md-6">
+                        <div class="form-group floating-label">
+                            <input type="text" name="last_name" id="id_last_name" class="form-control" required>
+                            <label for="id_last_name">
+                                <i class="fas fa-users me-2"></i>Фамилия
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-12">
+                        <div class="form-group floating-label">
+                            <input type="email" name="email" id="id_email" class="form-control" required>
+                            <label for="id_email">
+                                <i class="fas fa-envelope me-2"></i>Email
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Пароль -->
+                    <div class="col-md-6">
+                        <div class="form-group floating-label">
+                            <input type="password" name="password1" id="id_password1" class="form-control" required>
+                            <label for="id_password1">
+                                <i class="fas fa-lock me-2"></i>Пароль
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Подтверждение пароля -->
+                    <div class="col-md-6">
+                        <div class="form-group floating-label">
+                            <input type="password" name="password2" id="id_password2" class="form-control" required>
+                            <label for="id_password2">
+                                <i class="fas fa-redo me-2"></i>Повторите пароль
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Телефон -->
+                    <div class="col-12">
+                        <div class="form-group floating-label">
+                            <input type="tel" name="phone" id="id_phone" class="form-control" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}">
+                            <label for="id_phone">
+                                <i class="fas fa-phone me-2"></i>Телефон (необязательно)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Соглашения -->
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="consent_marketing" id="id_consent">
+                            <label class="form-check-label" for="id_consent">
+                                Хочу получать эксклюзивные предложения
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="id_terms" required>
+                            <label class="form-check-label" for="id_terms">
+                                Согласен с <a href="/terms/" class="link-pink">условиями использования</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопка отправки -->
+                <button type="submit" class="btn-auth-submit mt-4">
+                    <i class="fas fa-seedling me-2"></i>Зарегистрироваться
+                </button>
+            </form>
+
+            <!-- Разделитель -->
+            <div class="auth-divider">
+                <span>или</span>
+            </div>
+
+            <!-- Социальные сети -->
+            <div class="social-auth">
+                <a href="{% provider_login_url 'google' %}" class="btn-social google">
+                    <i class="fab fa-google me-2"></i>Продолжить с Google
+                </a>
+                <a href="{% provider_login_url 'vk' %}" class="btn-social vk">
+                    <i class="fab fa-vk me-2"></i>Продолжить с VK
+                </a>
+            </div>
+
+            <!-- Ссылки -->
+            <div class="auth-links text-center mt-4">
+                <p class="mb-1">Уже зарегистрированы?
+                    <a href="{% url 'account_login' %}" class="link-pink">Войти</a>
+                </p>
+                <a href="{% url 'account_reset_password' %}" class="link-pink">Забыли пароль?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили -->
+<style>
+    .auth-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .auth-card {
+        background: rgba(26, 26, 46, 0.95);
+        border: 1px solid rgba(255, 153, 204, 0.3);
+        border-radius: 20px;
+        padding: 2.5rem;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .auth-title {
+        color: #ff99cc;
+        font-size: 2rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .floating-label {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .floating-label label {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        color: #ffb3d9;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .floating-label input:focus ~ label,
+    .floating-label input:not(:placeholder-shown) ~ label {
+        top: -10px;
+        left: 0.5rem;
+        font-size: 0.8rem;
+        color: #ff66b3;
+    }
+
+    .btn-auth-submit {
+        background: linear-gradient(45deg, #ff99cc, #ff66b3);
+        border: none;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        color: #1a1a2e;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-auth-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 102, 179, 0.4);
+    }
+
+    .auth-divider {
+        margin: 2rem 0;
+        position: relative;
+        text-align: center;
+    }
+
+    .auth-divider span {
+        background: rgba(26, 26, 46, 0.95);
+        padding: 0 1rem;
+        color: #ff99cc;
+        position: relative;
+        z-index: 1;
+    }
+
+    .auth-divider:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 153, 204, 0.5),
+            transparent);
+    }
+
+    .btn-social {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-social.google {
+        background: #4285F4;
+        color: white;
+    }
+
+    .btn-social.vk {
+        background: #4C75A3;
+        color: white;
+    }
+
+    .btn-social:hover {
+        transform: translateY(-2px);
+    }
+
+    .link-pink {
+        color: #ff99cc !important;
+        text-decoration: none;
+        border-bottom: 1px dashed currentColor;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+</style>
+{% endblock %}

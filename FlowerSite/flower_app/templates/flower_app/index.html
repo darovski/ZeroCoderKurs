@@ -1,0 +1,98 @@
+{% extends 'flower_app/base.html' %}
+
+{% block content %}
+
+<style>
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card {
+        background: rgba(40, 40, 60, 0.6);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 153, 204, 0.1);
+    }
+
+    .btn-custom {
+        background: linear-gradient(45deg, #ff99cc, #ff66b3);
+        border: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-custom:after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255,255,255,0.1);
+        transform: rotate(45deg);
+        transition: all 0.5s ease;
+    }
+
+    .btn-custom:hover:after {
+        left: 150%;
+    }
+</style>
+
+<section class="hero-section text-center py-5 mb-5">
+    <div class="content-card p-5">
+        <h1 class="display-4 mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+            <i class="fas fa-spa me-3" style="color: #faf2f6;"></i>
+            Цветочная симфония ваших эмоций
+        </h1>
+
+        <div class="divider" style="height: 2px; background: linear-gradient(90deg, transparent, #ff99cc, transparent); margin: 2rem auto; width: 50%;"></div>
+
+        <p class="lead mb-4" style="color: white; font-size: 1.3rem;">
+            Каждый бутон в нашей оранжерее - нота в партитуре прекрасного.<br>
+            Составляем букеты, которые звучат языком любви:
+        </p>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <i class="fas fa-heart fa-2x mb-3" style="color: #ff66b3;"></i>
+                    <h3 style="color: white">Романтика</h3>
+                    <p style="color: white">Нежные пионы, царственные розы, таинственные орхидеи</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <i class="fas fa-gem fa-2x mb-3" style="color: #ff66b3;"></i>
+                    <h3 style="color: white">Изысканность</h3>
+                    <p style="color: white">Эксклюзивные композиции ручной работы</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card p-4">
+                    <i class="fas fa-bolt fa-2x mb-3" style="color: #ff66b3;"></i>
+                    <h3 style="color: white">Мгновения</h3>
+                    <p style="color: white">Доставка "к секунде" - даже в час пик</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section mt-4">
+            <a href="{% url 'flower_app:catalog_flowers' %}" class="btn btn-custom btn-lg px-5 py-3">
+                Создать свой шедевр
+                <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+            <p class="mt-3 text-muted">100% свежесть - цветы срезаны сегодня на рассвете</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

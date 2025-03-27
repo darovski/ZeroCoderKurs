@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/ZeroCoderKurs.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/bot_launcher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/middleware.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/payments.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/runbot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/account_login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_logout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/action.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/bot_info.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_bouquets.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_flowers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_gorshok.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/favorites.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2uXjavEC4DkfGifEHvXikfWRcGL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.Django Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Telegram Bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bot_launcher (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.bot_launcher.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs/FlowerSite/flower_app/runbot.py&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\flower_app\account" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\flower_app" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\products" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\flower_app" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\account" />
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\accounts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Django Server">
+    <configuration name="Run Server and Bot" type="CompoundRunConfigurationType">
+      <toRun name="Django Server" type="PythonConfigurationType" />
+      <toRun name="Telegram Bot" type="PythonConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Django Server" type="PythonConfigurationType" factoryName="Python">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.10 (ZeroCoderKurs)" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Telegram Bot" type="PythonConfigurationType" factoryName="Python">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.10 (ZeroCoderKurs)" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/flower_app/runbot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bot_launcher (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/bot_launcher.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bot_launcher" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite/flower_app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\bot_launcher.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bot_launcher" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\bot_launcher.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ZeroCoderKurs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Compound.Run Server and Bot" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.Django Server" />
+      <item itemvalue="Python.Telegram Bot" />
+      <item itemvalue="Python.bot_launcher (1)" />
+      <item itemvalue="Python.bot_launcher" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.bot_launcher" />
+        <item itemvalue="Python.bot_launcher (1)" />
+        <item itemvalue="Python.bot_launcher (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="" />
+      <created>1742401880258</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742401880258</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

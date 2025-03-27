@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(45deg, #2c073f, #1a1a2e); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+    <div class="container">
+        <!-- Логотип с иконкой цветка -->
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-spa me-2" style="color: #ff99cc;"></i>
+            FlowerDelivery
+        </a>
+
+        <!-- Гамбургер-меню для мобильных -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Основные пункты меню -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" href="{% url 'flower_app:index' %}">
+                        <i class="fas fa-home me-1"></i>Главная
+                    </a>
+                </li>
+                <li class="nav-item mx-2 dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'flower_app:catalog_flowers' %}" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-bouquet me-1"></i>Каталог
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="{% url 'flower_app:catalog_bouquets' %}">Букеты</a></li>
+                        <li><a class="dropdown-item" href="{% url 'flower_app:catalog_flowers' %}">Цветы</a></li>
+                        <li><a class="dropdown-item" href="{% url 'flower_app:catalog_gorshok' %}">Комнатные растения</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'flower_app:catalog_action' %}">
+                        <i class="fas fa-gift me-1"></i>Акции
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'flower_app:favorite_list' %}">
+                        <i class="fas fa-heart"></i> Избранное
+                        {% if user_favorites %}
+                        <span class="badge bg-pink">{{ user_favorites|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Правая часть с иконками -->
+            <div class="d-flex align-items-center">
+                <a href="{% url 'flower_app:detail' %}" class="btn btn-link text-white me-3 position-relative">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    {% if cart_items_count > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ cart_items_count }}
+                        </span>
+                    {% endif %}
+                </a>
+                <div class="dropdown">
+                    <a class="btn btn-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle" style="font-size: 1.3rem;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'flower_app:profile' %}"><i class="fas fa-user me-2"></i>Профиль</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Выход</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Стили для плавных анимаций -->
+<style>
+    .nav-link {
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ff99cc;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        border: 1px solid rgba(255, 153, 204, 0.2);
+    }
+
+    .dropdown-item:hover {
+        background: #ff99cc !important;
+        color: #1a1a2e !important;
+    }
+</style>
