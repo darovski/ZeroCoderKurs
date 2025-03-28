@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project" />
+    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0002_remove_cart_products_cart_created_at_cart_updated_at_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0003_alter_order_options_order_paid_order_updated_at_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0004_favorite.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0005_productgorshok.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0006_customuser_telegram_id_customuser_telegram_username.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;darovski&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/darovski/ZeroCoderKurs.git&quot;,
+    &quot;accountId&quot;: &quot;0ee5e53d-6b2f-4dca-ae7b-7ad10a23287e&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>

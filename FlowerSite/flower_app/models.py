@@ -1,11 +1,14 @@
+from lib2to3.fixes.fix_input import context
+
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import render
-
+from datetime import datetime
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -161,28 +164,28 @@ class OrderItem(models.Model):
         verbose_name_plural = 'Элементы заказа'
 
 
+User = get_user_model()
+
+
 class Order(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'В обработке'),
-        ('processing', 'В процессе'),
-        ('completed', 'Завершен'),
+        ('new', 'Новый'),
+        ('processing', 'В обработке'),
+        ('delivered', 'Доставлен'),
         ('cancelled', 'Отменен'),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    paid = models.BooleanField(default=False)
-    delivery_address = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    delivery_address = models.TextField(default='Не указан')
     delivery_date = models.DateField()
     delivery_time = models.TimeField()
+    phone = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
-    telegram_order_id = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"Заказ #{self.id}"
+        return f"Заказ №{self.id}"
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
