@@ -65,7 +65,7 @@ class CustomSignupForm(SignupForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser  # Используем кастомную модель
-        fields = ('first_name', 'last_name', 'email', 'phone')
+        fields = ('first_name', 'last_name', 'email', 'phone', 'telegram_username', 'delivery_address')
 
 def validate_phone(value):
     pattern = r'^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$'

@@ -38,6 +38,7 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
     telegram_id = models.CharField(max_length=100, blank=True)
     telegram_username = models.CharField(max_length=100, blank=True)
+    delivery_address = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Пользователь'
