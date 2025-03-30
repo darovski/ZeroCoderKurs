@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests
 import os
 
@@ -307,7 +309,14 @@ def order_create(request):
     cart = get_object_or_404(Cart, user=request.user)
 
     if request.method == 'POST':
-        order = Order.objects.create(user=request.user)
+        dt = datetime.fromisoformat(request.POST.get('order_time')[:-1])
+        order = Order.objects.create(
+            user=request.user,
+            delivery_date = dt.date(),
+            delivery_time = dt.time(),
+            total_price = 0,
+            delivery_address=request.user.delivery_address
+            )
 
         # Переносим товары из корзины в заказ
         for cart_item in cart.items.all():
