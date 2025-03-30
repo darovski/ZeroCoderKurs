@@ -58,8 +58,8 @@
                              style="max-height: 100px;">
                     </div>
                     <div class="col-md-4">
-                        <h4>{{ item.product.name }}</h4>
-                        <p class="text-muted">{{ item.product.category.name }}</p>
+                        <h4 style="color: white;">{{ item.product.name }}</h4>
+                        <p class="text-muted" >{{ item.product.category.name }}</p>
                     </div>
                     <div class="col-md-3">
                         <form action="{% url 'flower_app:update' item.product.id %}" method="post">

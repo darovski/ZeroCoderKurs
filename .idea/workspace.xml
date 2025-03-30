@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create000.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ZeroCoderKurs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZeroCoderKurs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +62,7 @@
     &quot;Python.bot_launcher.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs/FlowerSite/flower_app/runbot.py&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -90,7 +95,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.10 (ZeroCoderKurs)" />
       <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -113,7 +117,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.10 (ZeroCoderKurs)" />
       <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -271,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743141532358</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new project">
+      <option name="closed" value="true" />
+      <created>1743150444631</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743150444631</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

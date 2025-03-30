@@ -123,7 +123,7 @@ def save(self, request):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_name', 'phone', 'address', 'products']
+        fields = ['customer_name', 'phone', 'address', 'products', 'delivery_date']
         widgets = {
             'products': forms.CheckboxSelectMultiple
         }

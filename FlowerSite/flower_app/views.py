@@ -1,5 +1,8 @@
 import requests
 import os
+
+from django.contrib import messages
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
@@ -163,20 +166,69 @@ def profile_view(request):
      orders = Order.objects.filter(user=request.user).order_by('-created_at')[:5]
      return render(request, 'flower_app/profile.html', {'orders': orders})
 
-#@login_required
+
+@login_required
 def create_order(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            order = form.save(commit=False)
-            order.user = request.user
-            order.save()
-            form.save_m2m()
-            send_telegram_notification(order)
-            return redirect('order_success', order_id=order.id)
-    else:
-        form = OrderForm()
-    return render(request, 'order.html', {'form': form})
+    if request.method == 'POST' and 'confirm_order' in request.POST:
+        try:
+            # Получаем текущее время (либо из формы, либо создаем новое)
+            order_time = request.POST.get('order_time')
+            if order_time:
+                order_time = timezone.datetime.fromisoformat(order_time)
+            else:
+                order_time = timezone.now()
+
+            # Создаем заказ
+            order = Order.objects.create(
+                user=request.user,
+                first_name=request.POST.get('first_name'),
+                last_name=request.POST.get('last_name'),
+                phone=request.POST.get('phone'),
+                delivery_address=request.POST.get('delivery_address'),
+                total_price=request.user.cart.total_price,
+                created_at=order_time  # Устанавливаем время заказа
+            )
+
+            # Добавляем товары из корзины
+            for item in request.user.cart.items.all():
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity,
+                    price=item.product.price
+                )
+
+            # Очищаем корзину
+            request.user.cart.items.clear()
+
+            return redirect('order_confirmation', order_id=order.id)
+
+        except Exception as e:
+            messages.error(request, f'Ошибка при создании заказа: {str(e)}')
+            return redirect('cart_view')
+
+        # Для GET запроса передаем минимальную дату доставки
+        min_delivery_date = timezone.now().date() + timezone.timedelta(days=1)
+        return render(request, 'order_create.html', {
+            'min_delivery_date': min_delivery_date
+        })
+
+    return render(request, 'order_create.html')
+
+# #@login_required
+# def create_order(request):
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             order = form.save(commit=False)
+#             order.user = request.user
+#             order.save()
+#             form.save_m2m()
+#             send_telegram_notification(order)
+#             return redirect('order_success', order_id=order.id)
+#     else:
+#         form = OrderForm()
+#     return render(request, 'order.html', {'form': form})
 
 def send_telegram_notification(order):
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
