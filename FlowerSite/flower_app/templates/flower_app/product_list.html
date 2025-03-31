@@ -1,4 +1,4 @@
-{% extends 'app/base.html' %}
+{% extends 'flower_app/base.html' %}
 
 {% block content %}
 <style>
@@ -10,6 +10,9 @@
         margin-bottom: 2rem;
         transition: transform 0.3s ease;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        color: white;
     }
 
     .product-card:hover {
@@ -25,73 +28,67 @@
         margin-bottom: 1rem;
     }
 
+    .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
     .product-title {
-        color: #ff99cc;
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
     }
 
+    .card-text {
+        margin-bottom: 1rem;
+    }
+
+    .price-action-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 1rem;
+    }
+
     .product-price {
         font-weight: bold;
-        color: #fff;
         font-size: 1.3rem;
     }
 
-    .product-actions {
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.5rem;
+    .btn-custom {
+        background-color: #ff99cc;
+        border-color: #ff99cc;
+        color: #1a1a2e;
+        white-space: nowrap;
     }
 
-    .category-filter {
-        margin-bottom: 2rem;
-        padding: 1rem;
-        background: rgba(26, 26, 46, 0.7);
-        border-radius: 10px;
+    .btn-custom:hover {
+        background-color: #ff66b2;
+        border-color: #ff66b2;
     }
 </style>
 
 <div class="container py-5">
-    <div class="category-filter">
-        <h4>Фильтр по категориям:</h4>
-        <div class="btn-group" role="group">
-            <a href="{% url 'flower_app:product-list' %}" class="btn btn-sm btn-outline-custom">Все</a>
-            {% for category in categories %}
-                <a href="{% url 'flower_app:category-products' category.slug %}" class="btn btn-sm btn-outline-custom">
-                    {{ category.name }}
-                </a>
-            {% endfor %}
-        </div>
-    </div>
+    <h1 class="mb-4 text-white">{{ category_name }}</h1>
 
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for product in products %}
         <div class="col-lg-4 col-md-6">
             <div class="product-card">
                 <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
-                <h4 class="product-title">{{ product.name }}</h4>
-                <p class="text-muted">{{ product.category.name }}</p>
-                <p class="product-price">{{ product.price }} руб.</p>
-
-                <div class="product-actions">
-                    <a href="{% url 'flower_app:product-detail' product.id %}" class="btn btn-sm btn-custom">
-                        <i class="fas fa-eye"></i> Подробнее
-                    </a>
-                    {% if user.is_authenticated %}
-                        <form action="{% url 'flower_app:favorite-add' product.id %}" method="post" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-outline-custom">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                        </form>
-                    {% endif %}
+                <div class="card-body">
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <div class="price-action-row">
+                        <span class="product-price">{{ product.price }} руб.</span>
+                        <a href="#" class="btn btn-custom">В корзину</a>
+                    </div>
                 </div>
             </div>
         </div>
         {% empty %}
-        <div class="col-12 text-center py-5">
-            <h4 style="color: #ff99cc;">Товары не найдены</h4>
-        </div>
+        <p class="text-white">Товаров в этой категории пока нет.</p>
         {% endfor %}
     </div>
 </div>

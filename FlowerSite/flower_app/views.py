@@ -31,9 +31,16 @@ def favorite_remove(request, product_id):
         favorite.delete()
     return redirect('flower_app:favorites')
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'flower_app/product_list.html', {'products': products})
+
+def product_list(request, category):
+    products = Product.objects.filter(category=category)
+    category_name = dict(Product.CATEGORY_CHOICES).get(category, 'Все товары')
+
+    return render(request, 'flower_app/product_list.html', {
+        'products': products,
+        'category_name': category_name,
+    })
+
 
 def telegram_auth(request):
     auth_data = request.GET
