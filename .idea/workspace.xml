@@ -5,9 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
+      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/account_login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/migrations/0002_customuser_delivery_address.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/favorites.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/favorites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/order_create000.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/alstromeriya.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/amarilus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/anturium.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/bendzhamin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/bendzhamin_AUV0HXH.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/buket.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/buket_A2ZqSIm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/florarium.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/florarium_W7Nh66m.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/geliantus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/gindrangeya.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/hrizantema.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/hrizantema_5BuXGrS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/klematis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/klematis_LrVHRC7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/sezon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/sezon_AnwUsis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/shlyapa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/shlyapa_oTJk5Xm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/media/products/zamiokulkas.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +86,7 @@
     &quot;Python.bot_launcher.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs/FlowerSite/flower_app/templates/flower_app&quot;
   }
 }</component>
   <component name="RecentsManager">

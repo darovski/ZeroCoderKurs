@@ -152,21 +152,3 @@ TELEGRAM_BOT_TOKEN = '7617329789:AAHeQbMyxqy4UbxKv1ne2teEro0IPEGsmnI'
 TELEGRAM_ADMINS = [617329789]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.yandex.ru'  # Или ваш SMTP-сервер
-# EMAIL_PORT = 465
-# EMAIL_USE_SSL = True
-# EMAIL_HOST_USER = 'your_email@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'your_password'
-# DEFAULT_FROM_EMAIL = 'your_email@yandex.ru'
-
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': ['profile', 'email'],
-#         'APP': {
-#             'client_id': 'ваш-id',
-#             'secret': 'ваш-secret',
-#         }
-#     }
-# }

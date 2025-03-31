@@ -84,26 +84,25 @@ class Meta:
         verbose_name_plural = "Настройки сайта"
 
 class Product(models.Model):
+    CATEGORY_CHOICES = [
+        ('product', 'Свежие цветы'),
+        ('bouquet', 'Букеты'),
+        ('gorshok', 'Комнатные цветы'),
+    ]
+
+    category = models.CharField(
+        max_length=10,
+        choices=CATEGORY_CHOICES,
+        default='product'
+    )
+
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     image = models.ImageField(upload_to='products/')
-
-class ProductBouquet(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    description = models.TextField()
-    image = models.ImageField(upload_to='products/')
-
-class ProductGorshok(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    description = models.TextField()
-    image = models.ImageField(upload_to='products/')
-
 
 class Cart(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

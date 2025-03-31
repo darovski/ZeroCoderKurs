@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import admin
 
-from .models import SiteSettings, Product, ProductBouquet, ProductGorshok
+from .models import SiteSettings, Product
 
 def some_view(request):
     settings = SiteSettings.load()
@@ -17,14 +17,15 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         'site_name',
         'company_phone',
         'delivery_price',
-        'min_order_price'
+        'min_order_price',
+        'stripe_public_key',
+        'stripe_secret_key'
     ]
 
-class SiteSettingsAdmin(admin.ModelAdmin):
-    list_display = ['stripe_public_key', 'stripe_secret_key']
-
-#admin.site.register(SiteSettings, SiteSettingsAdmin)
-
-admin.site.register(Product)
-admin.site.register(ProductBouquet)
-admin.site.register(ProductGorshok)
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'category')
+    list_display_links = ('name', 'price')
+    list_editable = ('category',)
+    list_filter = ('category',)
+    ordering = ('category', 'name')

@@ -10,7 +10,7 @@ import json
 from django.http import JsonResponse
 from telegram import User
 
-from .models import Product, ProductBouquet, ProductGorshok, SiteSettings, Favorite
+from .models import Product, SiteSettings, Favorite
 from .models import Cart, CartItem, Order, OrderItem
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import OrderForm, UserEditForm, CartAddProductForm
@@ -115,22 +115,12 @@ def catalog_flowers(request):
     products = Product.objects.all()
     return render(request, 'flower_app/catalog_flowers.html', {'products': products})
 
-def catalog_bouquets(request):
-    products = ProductBouquet.objects.all()
-    return render(request, 'flower_app/catalog_flowers.html', {'products': products})
-
-def catalog_gorshok(request):
-    products = ProductGorshok.objects.all()
-    return render(request, 'flower_app/catalog_gorshok.html', {'products': products})
-
 def catalog_action(request):
     user = getattr(request, 'user', None)
     context = {
         'user': user,
     }
     return render(request, 'flower_app/action.html')
-
-
 
 def signup(request):
 #    products = ProductBouquet.objects.all()
@@ -143,7 +133,6 @@ def account_login(request):
 def account_logout(request):
 #    products = ProductBouquet.objects.all()
     return render(request, 'flower_app/account_logout.html')
-
 
 @login_required
 def account_edit(request):
