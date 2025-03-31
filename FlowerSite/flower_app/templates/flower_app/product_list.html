@@ -13,6 +13,7 @@
         display: flex;
         flex-direction: column;
         color: white;
+        position: relative;
     }
 
     .product-card:hover {
@@ -43,7 +44,7 @@
         margin-bottom: 1rem;
     }
 
-    .price-action-row {
+    .price-and-button {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -51,9 +52,14 @@
         padding-top: 1rem;
     }
 
-    .product-price {
+    .price {
         font-weight: bold;
         font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .btn-container {
+        margin-left: auto;
     }
 
     .btn-custom {
@@ -67,6 +73,37 @@
         background-color: #ff66b2;
         border-color: #ff66b2;
     }
+
+    .btn-favorite {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        color: #ff0000;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1;
+        -webkit-text-stroke: 1px #ff0000;
+        text-stroke: 1px #ff0000;
+        opacity: 0.8;
+    }
+
+    .btn-favorite i {
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn-favorite:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .btn-favorite.active i {
+        color: #ff0000;
+        -webkit-text-fill-color: #ff0000;
+    }
 </style>
 
 <div class="container py-5">
@@ -76,13 +113,28 @@
         {% for product in products %}
         <div class="col-lg-4 col-md-6">
             <div class="product-card">
+                {% if user.is_authenticated %}
+                <a href="{% url 'flower_app:favorite_add' product.id %}"
+                   class="btn-favorite {% if product in user_favorites %}active{% endif %}"
+                   title="Добавить в избранное">
+                   <i class="fas fa-heart"></i>
+                </a>
+                {% endif %}
                 <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
                 <div class="card-body">
                     <h5 class="product-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
-                    <div class="price-action-row">
-                        <span class="product-price">{{ product.price }} руб.</span>
-                        <a href="#" class="btn btn-custom">В корзину</a>
+                    <div class="price-and-button">
+                        <p class="price">{{ product.price }} руб.</p>
+                        <div class="btn-container">
+                            <form action="{% url 'flower_app:add' product.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn btn-custom">
+                                    <i class="fas fa-cart-plus me-2"></i>В корзину
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

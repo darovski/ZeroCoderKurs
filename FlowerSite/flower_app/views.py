@@ -154,13 +154,10 @@ def account_edit(request):
     return render(request, 'flower_app/account_edit.html', {'form': form})
 
 def account_reset_password(request):
-#    products = ProductBouquet.objects.all()
     return render(request, 'flower_app/account_reset_password.html')
 
 @login_required(login_url='account_login')
 def profile_view(request):
-    # template_name = 'flower_app/profile.html'
-    # login_url = 'account_login/'
      orders = Order.objects.filter(user=request.user).order_by('-created_at')[:5]
      return render(request, 'flower_app/profile.html', {'orders': orders})
 
@@ -212,21 +209,6 @@ def create_order(request):
         })
 
     return render(request, 'order_create.html')
-
-# #@login_required
-# def create_order(request):
-#     if request.method == 'POST':
-#         form = OrderForm(request.POST)
-#         if form.is_valid():
-#             order = form.save(commit=False)
-#             order.user = request.user
-#             order.save()
-#             form.save_m2m()
-#             send_telegram_notification(order)
-#             return redirect('order_success', order_id=order.id)
-#     else:
-#         form = OrderForm()
-#     return render(request, 'order.html', {'form': form})
 
 def send_telegram_notification(order):
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')

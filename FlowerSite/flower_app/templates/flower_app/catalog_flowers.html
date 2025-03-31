@@ -99,11 +99,11 @@
         <div class="col-lg-4 col-md-6">
             <div class="product-card">
                 {% if user.is_authenticated %}
-                <button class="favorite-btn {% if product.is_favorite %}active{% endif %}"
-                        data-product-id="{{ product.id }}"
-                        onclick="toggleFavorite(this)">
-                    ♥
-                </button>
+                    <a href="{% url 'flower_app:favorite_add' product.id %}"
+                                class="btn-favorite {% if product in user_favorites %}active{% endif %}"
+                                title="Добавить в избранное">
+                                <i class="fas fa-heart"></i>
+                    </a>
                 {% endif %}
                 <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
                 <div class="card-body">
