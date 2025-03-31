@@ -2,152 +2,146 @@
 
 {% block content %}
 <style>
-    .card {
+    .product-card {
         background: rgba(26, 26, 46, 0.9);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 153, 204, 0.2);
+        border: 1px solid rgba(255, 153, 204, 0.3);
         border-radius: 15px;
-        transition: all 0.3s ease;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
         height: 100%;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        color: white;
+        position: relative; /* Для позиционирования кнопки избранного */
     }
 
-    .card:hover {
+    .product-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(255, 153, 204, 0.2);
+        box-shadow: 0 10px 20px rgba(255, 153, 204, 0.2);
     }
 
-    .card-img-top {
-        height: 250px;
+    .product-image {
+        width: 100%;
+        height: 200px;
         object-fit: cover;
-        border-bottom: 2px solid rgba(255, 153, 204, 0.3);
-    }
-
-    .card-body {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-grow: 1;
-    }
-
-    .card-title {
-        color: #ff99cc;
-        font-size: 1.4rem;
-        font-weight: 600;
+        border-radius: 10px;
         margin-bottom: 1rem;
     }
 
-    .card-text {
-        color: rgba(255, 255, 255, 0.85);
+    .card-body {
         flex-grow: 1;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
     }
 
-    .price-and-button {
+    .product-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+        margin-bottom: 1rem;
+    }
+
+    .price-action-row {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end; /* Выравниваем элементы по нижнему краю */
-        margin-top: auto; /* Прижимаем блок к низу */
+        align-items: center;
+        margin-top: auto;
+        padding-top: 1rem;
     }
 
-    .price {
-        color: #ff66b3;
+    .product-price {
+        font-weight: bold;
         font-size: 1.3rem;
-        font-weight: 700;
-        margin: 0;
-        align-self: flex-end; /* Выравниваем цену по нижнему краю */
     }
 
     .btn-custom {
-        background: linear-gradient(45deg, #ff99cc, #ff66b3);
-        border: none;
+        background-color: #ff99cc;
+        border-color: #ff99cc;
         color: #1a1a2e;
-        padding: 0.5rem 1.5rem;
-        border-radius: 25px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        margin-left: auto; /* Прижимаем кнопку к правому краю */
+        white-space: nowrap;
     }
 
     .btn-custom:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(255, 102, 179, 0.4);
+        background-color: #ff66b2;
+        border-color: #ff66b2;
     }
 
-    .btn-container {
-        display: flex;
-        justify-content: flex-end; /* Выравниваем кнопку по правому краю */
-        width: 100%;
-    }
-
-        .btn-favorite {
+    .favorite-btn {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        background: rgba(26, 26, 46, 0.7);
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
         border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
+        color: #ccc;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        z-index: 1;
     }
 
-    .btn-favorite:hover, .btn-favorite.active {
-        color: #ff66b3;
-        background: rgba(255, 102, 179, 0.2);
+    .favorite-btn.active {
+        color: #ff99cc;
     }
 
-    .btn-favorite.active {
-        color: #ff0066;
+    .favorite-btn:hover {
+        color: #ff99cc;
     }
 </style>
 
 <div class="container py-5">
+    <h1 class="mb-4 text-white">{{ category_name }}</h1>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for product in products %}
-        <div class="col">
-            <div class="card">
-                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+        <div class="col-lg-4 col-md-6">
+            <div class="product-card">
+                {% if user.is_authenticated %}
+                <button class="favorite-btn {% if product.is_favorite %}active{% endif %}"
+                        data-product-id="{{ product.id }}"
+                        onclick="toggleFavorite(this)">
+                    ♥
+                </button>
+                {% endif %}
+                <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
                 <div class="card-body">
-                    <div>
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                    </div>
-                    <div class="price-and-button">
-                        <p class="price">{{ product.price }} руб.</p>
-                        <div class="btn-container">
-                            <form action="{% url 'flower_app:add' product.id %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn btn-custom">
-                                    <i class="fas fa-cart-plus me-2"></i>В корзину
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'flower_app:favorite_add' product.id %}"
-                            class="btn-favorite {% if product in user_favorites %}active{% endif %}"
-                            title="Добавить в избранное">
-                            <i class="fas fa-heart"></i>
-                    </a>
-                    {% endif %}
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <div class="price-action-row">
+                        <span class="product-price">{{ product.price }} руб.</span>
+                        <a href="#" class="btn btn-custom">В корзину</a>
                     </div>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p class="text-white">Товаров в этой категории пока нет.</p>
         {% endfor %}
     </div>
 </div>
+
+<script>
+function toggleFavorite(button) {
+    const productId = button.getAttribute('data-product-id');
+    const isActive = button.classList.contains('active');
+
+    fetch(`/favorites/toggle/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            button.classList.toggle('active');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
 {% endblock %}

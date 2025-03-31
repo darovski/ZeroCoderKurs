@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
-      <change afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/000.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/product_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_flowers.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/templates/flower_app/catalog_flowers.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +30,12 @@
     &quot;assignee&quot;: &quot;darovski&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/darovski/ZeroCoderKurs.git&quot;,
-    &quot;accountId&quot;: &quot;0ee5e53d-6b2f-4dca-ae7b-7ad10a23287e&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/darovski/ZeroCoderKurs.git",
+    "accountId": "e41df320-ff02-4539-86c5-05464a926dc1"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -285,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743332263155</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="new project">
+      <option name="closed" value="true" />
+      <created>1743419222653</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743419222653</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
