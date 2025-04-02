@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'flower_app',
+    #'flower_app.apps.FlowerAppConfig',
     'allauth',
     'allauth.account',
     'django.contrib.admin',
@@ -147,8 +148,9 @@ ACCOUNT_FORMS = {
 }
 
 LOGIN_URL = '/account_login/'
+# SITE_URL = 'http://localhost:8000'
 
 TELEGRAM_BOT_TOKEN = '7617329789:AAHeQbMyxqy4UbxKv1ne2teEro0IPEGsmnI'
-TELEGRAM_ADMINS = [617329789]
+TELEGRAM_ADMIN_CHAT_ID = 274939138
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

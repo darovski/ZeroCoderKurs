@@ -1,5 +1,3 @@
-from lib2to3.fixes.fix_input import context
-
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -8,7 +6,15 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import render
-from datetime import datetime
+
+# Определяем константы в начале файла
+STATUS_CHOICES = [
+    ('pending', 'В обработке'),
+    ('processing', 'В процессе'),
+    ('completed', 'Завершен'),
+    ('cancelled', 'Отменен'),
+]
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -36,9 +42,10 @@ class Favorite(models.Model):
 
 class CustomUser(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
-    telegram_id = models.CharField(max_length=100, blank=True)
+    telegram_id = models.CharField(max_length=100, blank=True, null=True, unique=True)
     telegram_username = models.CharField(max_length=100, blank=True)
     delivery_address = models.TextField(blank=True, null=True)
+    first_name = models.CharField(max_length=100, blank=True)
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -51,10 +58,8 @@ class Profile(models.Model):
         related_name='profile'
     )
 
-    # Дополнительные поля профиля
-
     def __str__(self):
-        return f"Профиль {self.user.username}"
+        return f"{self.telegram_username or self.telegram_id}"
 
 class SiteSettings(models.Model):
     @classmethod
@@ -138,15 +143,6 @@ def save(self, *args, **kwargs):
     super().save(*args, **kwargs)
 
 
-# Определяем константы в начале файла
-STATUS_CHOICES = [
-    ('pending', 'В обработке'),
-    ('processing', 'В процессе'),
-    ('completed', 'Завершен'),
-    ('cancelled', 'Отменен'),
-]
-
-
 class OrderItem(models.Model):
     order = models.ForeignKey('Order', related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.PROTECT)
@@ -175,32 +171,34 @@ class Order(models.Model):
         ('cancelled', 'Отменен'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
-    delivery_address = models.TextField(default='Не указан')
-    delivery_date = models.DateField()
-    delivery_time = models.TimeField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='orders')
+    customer_name = models.CharField(max_length=100)
+    address = models.TextField()
     phone = models.CharField(max_length=20)
+    products = models.ManyToManyField('Product')  # Assuming Product is defined elsewhere
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
     created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_id = models.CharField(max_length=100, blank=True)
+    is_paid = models.BooleanField(default=False)
+    delivery_address = models.TextField(default='Не указан')
+    delivery_date = models.DateField(null=True, blank=True)
+    delivery_time = models.TimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"Заказ №{self.id}"
+        return f"Заказ #{self.id} - {self.get_status_display()}"
+
+    def save(self, *args, **kwargs):
+        # Для корректной работы сигналов при обновлении
+        if self.pk:
+            from django.db.models import F
+            kwargs['update_fields'] = kwargs.get('update_fields', set()) | {'status'}
+        super().save(*args, **kwargs)
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        return sum(item.get_cost() for item in self.products.all())
 
     class Meta:
         ordering = ['-created_at']
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
-    customer_name = models.CharField(max_length=100)
-    address = models.TextField()
-    phone = models.CharField(max_length=20)
-    products = models.ManyToManyField(Product)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
-    created_at = models.DateTimeField(auto_now_add=True)
-    payment_id = models.CharField(max_length=100, blank=True)
-    is_paid = models.BooleanField(default=False)
