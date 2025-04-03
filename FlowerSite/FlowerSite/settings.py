@@ -148,7 +148,6 @@ ACCOUNT_FORMS = {
 }
 
 LOGIN_URL = '/account_login/'
-# SITE_URL = 'http://localhost:8000'
 
 TELEGRAM_BOT_TOKEN = '7617329789:AAHeQbMyxqy4UbxKv1ne2teEro0IPEGsmnI'
 TELEGRAM_ADMIN_CHAT_ID = 274939138

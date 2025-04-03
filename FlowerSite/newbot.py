@@ -2,6 +2,7 @@ import os
 import logging
 from datetime import datetime
 import django
+import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
@@ -139,23 +140,36 @@ def create_order(user, delivery_address, delivery_date, delivery_time, phone, to
 def get_user_orders(user):
     return list(Order.objects.filter(user=user)
                 .prefetch_related('items__product')
-                .select_related('user')
                 .order_by('-created_at')[:10])
 
 
-### Обработчики команд ###
+@sync_to_async
+def update_cart_item_quantity_db(item_id, change):
+    try:
+        item = CartItem.objects.get(id=item_id)
+        if change == 'increase':
+            item.quantity += 1
+        elif change == 'decrease' and item.quantity > 1:
+            item.quantity -= 1
+        item.save()
+        return item
+    except CartItem.DoesNotExist:
+        return None
+
+
+@sync_to_async
+def get_order_items(order):
+    return list(order.items.all())
+
+
+### Основные обработчики ###
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
 
     if not user.username:
-        if update.callback_query:
-            await update.callback_query.edit_message_text(
-                "❌ У вас не установлен username в Telegram. Пожалуйста, добавьте его в настройках профиля!"
-            )
-        else:
-            await update.message.reply_text(
-                "❌ У вас не установлен username в Telegram. Пожалуйста, добавьте его в настройках профиля!"
-            )
+        await (update.callback_query.edit_message_text if update.callback_query else update.message.reply_text)(
+            "❌ У вас не установлен username в Telegram. Пожалуйста, добавьте его в настройках профиля!"
+        )
         return
 
     user_obj = await get_or_create_user(
@@ -172,24 +186,51 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
+    await (update.callback_query.edit_message_text if update.callback_query else update.message.reply_text)(
+        '🌸 Добро пожаловать в цветочный магазин!',
+        reply_markup=reply_markup
+    )
 
-    if update.callback_query:
-        try:
-            await update.callback_query.edit_message_text(
-                '🌸 Добро пожаловать в цветочный магазин!',
-                reply_markup=reply_markup
-            )
-        except Exception as e:
-            logger.error(f"Error editing message: {e}")
-            await update.callback_query.message.reply_text(
-                '🌸 Добро пожаловать в цветочный магазин!',
-                reply_markup=reply_markup
-            )
-    else:
-        await update.message.reply_text(
-            '🌸 Добро пожаловать в цветочный магазин!',
-            reply_markup=reply_markup
-        )
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    help_text = """
+🌸 *Помощь по боту* 🌸
+
+*Основные команды:*
+/start - Начать работу с ботом
+/help - Показать это сообщение
+/catalog - Показать каталог товаров
+/cart - Показать корзину
+/orders - Мои заказы
+
+*Как сделать заказ:*
+1. Выберите товары в каталоге
+2. Добавьте их в корзину
+3. Перейдите в корзину (/cart)
+4. Нажмите "Оформить заказ"
+5. Введите данные для доставки
+
+*Управление корзиной:*
+- Используйте кнопки ➕/➖ для изменения количества
+- "❌ Очистить корзину" - удалить все товары
+
+*Техническая поддержка:*
+Если возникли проблемы, пишите @FlowerSiteAdmins
+
+Мы работаем ежедневно с 9:00 до 21:00
+    """
+
+    keyboard = [
+        [InlineKeyboardButton("🛍️ Каталог", callback_data='catalog'),
+         InlineKeyboardButton("🛒 Корзина", callback_data='view_cart')],
+        [InlineKeyboardButton("📦 Мои заказы", callback_data='my_orders')]
+    ]
+
+    await update.message.reply_text(
+        help_text,
+        parse_mode='Markdown',
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
 
 
 async def catalog(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -206,20 +247,23 @@ async def catalog(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    if query:
+    # Проверяем, есть ли сохраненное сообщение с фото
+    last_photo_id = context.user_data.get('last_photo_message_id')
+    if last_photo_id:
         try:
-            await query.edit_message_text(
-                "Выберите товар:",
-                reply_markup=reply_markup
-            )
+            await context.bot.delete_message(chat_id=query.message.chat_id, message_id=last_photo_id)
+            del context.user_data['last_photo_message_id']
         except Exception as e:
-            logger.error(f"Error editing catalog: {e}")
-            await query.message.reply_text(
-                "Выберите товар:",
-                reply_markup=reply_markup
-            )
-    else:
-        await update.message.reply_text(
+            logger.error(f"Error deleting photo message: {e}")
+
+    try:
+        await query.edit_message_text(
+            "Выберите товар:",
+            reply_markup=reply_markup
+        )
+    except Exception as e:
+        logger.error(f"Error editing catalog: {e}")
+        await query.message.reply_text(
             "Выберите товар:",
             reply_markup=reply_markup
         )
@@ -242,13 +286,19 @@ async def show_product(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
 
     try:
-        await query.message.reply_photo(
+        # Сначала отправляем фото с описанием
+        photo_message = await query.message.reply_photo(
             photo=open(product.image.path, 'rb'),
             caption=f"*{product.name}*\n\n{product.description}\n\nЦена: {product.price}₽",
             parse_mode='Markdown',
             reply_markup=InlineKeyboardMarkup(keyboard))
+
+        # Сохраняем ID сообщения с фото для последующего редактирования
+        context.user_data['last_photo_message_id'] = photo_message.message_id
+
     except Exception as e:
         logger.error(f"Error sending photo: {e}")
+        # Если не удалось отправить фото, отправляем текстовое сообщение
         try:
             await query.edit_message_text(
                 f"*{product.name}*\n\n{product.description}\n\nЦена: {product.price}₽",
@@ -266,7 +316,6 @@ async def add_to_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     user = update.effective_user
-
     if not user.username:
         await query.edit_message_text("❌ У вас не установлен username!")
         return
@@ -292,7 +341,6 @@ async def view_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     user = update.effective_user
-
     if not user.username:
         await query.edit_message_text("❌ У вас не установлен username!")
         return
@@ -306,7 +354,6 @@ async def view_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cart_items = await get_cart_items(cart)
 
     if not cart_items:
-        # Заменяем query.answer() на полноценное сообщение
         try:
             await query.edit_message_text(
                 "🛒 Ваша корзина пуста!",
@@ -315,7 +362,6 @@ async def view_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
                 ]))
         except Exception as e:
-            logger.error(f"Error editing empty cart message: {e}")
             await query.message.reply_text(
                 "🛒 Ваша корзина пуста!",
                 reply_markup=InlineKeyboardMarkup([
@@ -323,7 +369,6 @@ async def view_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
                 ]))
         return
-
 
     total = sum(item.product.price * item.quantity for item in cart_items)
     message = "🛒 Ваша корзина:\n\n" + "\n".join(
@@ -348,7 +393,6 @@ async def view_cart(update: Update, context: ContextTypes.DEFAULT_TYPE):
             message,
             reply_markup=InlineKeyboardMarkup(keyboard))
     except Exception as e:
-        logger.error(f"Error editing cart: {e}")
         await query.message.reply_text(
             message,
             reply_markup=InlineKeyboardMarkup(keyboard))
@@ -359,7 +403,6 @@ async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     user = update.effective_user
-
     if not user.username:
         await query.edit_message_text("❌ У вас не установлен username!")
         return
@@ -372,7 +415,20 @@ async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
     orders = await get_user_orders(user_obj)
 
     if not orders:
-        await query.answer("У вас пока нет заказов")
+        try:
+            await query.edit_message_text(
+                "📦 У вас пока нет заказов",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🛍️ В каталог", callback_data="catalog")],
+                    [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
+                ]))
+        except Exception as e:
+            await query.message.reply_text(
+                "📦 У вас пока нет заказов",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🛍️ В каталог", callback_data="catalog")],
+                    [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
+                ]))
         return
 
     message = "📋 Ваши последние заказы:\n\n"
@@ -380,7 +436,7 @@ async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
         message += (
             f"🔹 Заказ #{order.id}\n"
             f"📅 {order.created_at.strftime('%d.%m.%Y %H:%M')}\n"
-            f"🏠 Адрес: {order.address}\n"
+            f"🏠 Адрес: {order.delivery_address}\n"
             f"📞 Телефон: {order.phone}\n"
             f"🚚 Доставка: {order.delivery_date} в {order.delivery_time}\n"
             f"💵 Сумма: {order.total_price} руб.\n"
@@ -394,7 +450,6 @@ async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
             ]))
     except Exception as e:
-        logger.error(f"Error editing orders: {e}")
         await query.message.reply_text(
             message,
             reply_markup=InlineKeyboardMarkup([
@@ -402,13 +457,11 @@ async def list_orders(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ]))
 
 
-### Оформление заказа ###
 async def start_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
     user = update.effective_user
-
     if not user.username:
         await query.edit_message_text("❌ У вас не установлен username!")
         return
@@ -418,7 +471,6 @@ async def start_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text("Сначала нажмите /start")
         return
 
-    # Инициализируем user_data если его нет
     if not hasattr(context, 'user_data') or context.user_data is None:
         context.user_data = {}
 
@@ -426,7 +478,20 @@ async def start_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
     cart_items = await get_cart_items(cart)
 
     if not cart_items:
-        await query.answer("Ваша корзина пуста!")
+        try:
+            await query.edit_message_text(
+                "🛒 Ваша корзина пуста!",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🛍️ В каталог", callback_data="catalog")],
+                    [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
+                ]))
+        except Exception as e:
+            await query.message.reply_text(
+                "🛒 Ваша корзина пуста!",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🛍️ В каталог", callback_data="catalog")],
+                    [InlineKeyboardButton("🔙 Назад", callback_data="main_menu")]
+                ]))
         return
 
     try:
@@ -437,7 +502,6 @@ async def start_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ]))
         return ORDER_ADDRESS
     except Exception as e:
-        logger.error(f"Error starting order: {e}")
         await query.message.reply_text(
             "Пожалуйста, введите адрес доставки:",
             reply_markup=InlineKeyboardMarkup([
@@ -448,7 +512,6 @@ async def start_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def process_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        # Инициализируем user_data если его нет
         if not hasattr(context, 'user_data') or context.user_data is None:
             context.user_data = {}
 
@@ -475,7 +538,6 @@ async def process_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def process_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        # Проверяем наличие адреса
         if 'delivery_address' not in context.user_data:
             await update.message.reply_text("❌ Адрес не найден. Начните заново.")
             return ConversationHandler.END
@@ -514,7 +576,6 @@ async def process_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def process_time(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        # Проверяем предыдущие данные
         if 'delivery_address' not in context.user_data or 'delivery_date' not in context.user_data:
             await update.message.reply_text("❌ Отсутствуют предыдущие данные. Начните заново.")
             return ConversationHandler.END
@@ -555,7 +616,6 @@ async def process_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         logger.info(f"Processing phone, user_data: {context.user_data}")
 
-        # Проверяем наличие всех необходимых данных
         required_fields = ['delivery_address', 'delivery_date', 'delivery_time']
         missing_fields = [field for field in required_fields if field not in context.user_data]
 
@@ -564,30 +624,25 @@ async def process_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text(error_msg)
             return ConversationHandler.END
 
-        # Получаем телефон
         phone = update.message.text.strip()
         if not phone:
             await update.message.reply_text("❌ Номер телефона не может быть пустым.")
             return ORDER_PHONE
 
-        # Получаем пользователя
         user = update.effective_user
         user_obj = await get_user_by_telegram_username(user.username)
         if not user_obj:
             await update.message.reply_text("❌ Пользователь не найден.")
             return ConversationHandler.END
 
-        # Получаем корзину
         cart, _ = await get_or_create_cart(user_obj)
         cart_items = await get_cart_items(cart)
         if not cart_items:
             await update.message.reply_text("❌ Корзина пуста.")
             return ConversationHandler.END
 
-        # Считаем сумму
         total_price = sum(item.product.price * item.quantity for item in cart_items)
 
-        # Создаем заказ
         try:
             order = await create_order(
                 user=user_obj,
@@ -602,7 +657,6 @@ async def process_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("❌ Ошибка при создании заказа. Пожалуйста, попробуйте ещё раз.")
             return ConversationHandler.END
 
-        # Отправляем подтверждение
         order_info = (
             f"✅ Заказ #{order.id} успешно оформлен!\n"
             f"Адрес: {context.user_data['delivery_address']}\n"
@@ -612,14 +666,28 @@ async def process_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"Сумма: {total_price} руб.\n\n"
             "Мы свяжемся с вами для подтверждения."
         )
+
+        # Отправляем информацию о заказе
         await update.message.reply_text(order_info)
 
-        # Уведомляем администратора
-        await notify_admin(context.bot, order)
+        # Добавляем завершающее сообщение с кнопкой в главное меню
+        goodbye_message = (
+            "🌸 Спасибо за ваш заказ!\n"
+            "Желаем вам прекрасного дня!\n"
+            "Если у вас есть вопросы, мы всегда на связи."
+        )
 
-        # Очищаем контекст
+        await update.message.reply_text(
+            goodbye_message,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🏠 В главное меню", callback_data="main_menu")]
+            ])
+        )
+
+        # Уведомление администратора в фоне
+        asyncio.create_task(notify_admin(context.bot, order))
+
         context.user_data.clear()
-
         return ConversationHandler.END
 
     except Exception as e:
@@ -629,26 +697,37 @@ async def process_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return ConversationHandler.END
 
 
-async def notify_admin(bot, order):
+@sync_to_async
+def prepare_admin_notification(order_id):
     try:
-        admin_chat_id = settings.TELEGRAM_ADMIN_CHAT_ID
+        order = Order.objects.select_related('user').prefetch_related('items__product').get(id=order_id)
+        items_text = "\n".join(
+            f"   • {item.product.name} × {item.quantity} = {item.price * item.quantity}₽"
+            for item in order.items.all()
+        )
 
-        order_items = await sync_to_async(list)(order.items.all())
-        message = (
-            "🛒 *Новый заказ!*\n\n"
+        return (
+            f"🛒 *Новый заказ!*\n\n"
             f"🔹 Номер: #{order.id}\n"
             f"👤 Клиент: @{order.user.telegram_username}\n"
             f"📞 Телефон: {order.phone}\n"
             f"🏠 Адрес: {order.delivery_address}\n"
             f"📅 Дата: {order.delivery_date}\n"
             f"⌚ Время: {order.delivery_time}\n"
+            f"{items_text}\n\n"
+            f"💵 Итого: {order.total_price}₽\n"
+            f"📌 Статус: Новый"
         )
+    except Exception as e:
+        logger.error(f"Error preparing admin notification: {e}")
+        return None
 
-        for item in order_items:
-            message += f"   • {item.product.name} × {item.quantity} = {item.price * item.quantity}₽\n"
 
-        message += f"\n💵 Итого: {order.total_price}₽\n"
-        message += "📌 Статус: Новый"
+async def notify_admin(bot, order):
+    try:
+        message = await prepare_admin_notification(order.id)
+        if not message:
+            return
 
         keyboard = [
             [
@@ -658,10 +737,11 @@ async def notify_admin(bot, order):
         ]
 
         await bot.send_message(
-            chat_id=admin_chat_id,
+            chat_id=settings.TELEGRAM_ADMIN_CHAT_ID,
             text=message,
             parse_mode='Markdown',
             reply_markup=InlineKeyboardMarkup(keyboard))
+
     except Exception as e:
         logger.error(f"Admin notification error: {e}")
 
@@ -683,7 +763,6 @@ async def cancel_order_creation(update: Update, context: ContextTypes.DEFAULT_TY
     else:
         await update.message.reply_text("❌ Оформление заказа отменено.")
 
-    # Очищаем контекст
     if hasattr(context, 'user_data'):
         context.user_data.clear()
 
@@ -704,26 +783,12 @@ async def clear_cart_handler(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await view_cart(update, context)
 
 
-@sync_to_async
-def update_cart_item_quantity(item_id, change):
-    try:
-        item = CartItem.objects.get(id=item_id)
-        if change == 'increase':
-            item.quantity += 1
-        elif change == 'decrease' and item.quantity > 1:
-            item.quantity -= 1
-        item.save()
-        return item
-    except CartItem.DoesNotExist:
-        return None
-
-
 async def change_quantity(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
     action, item_id = query.data.split('_')
-    item = await update_cart_item_quantity(item_id, action)
+    item = await update_cart_item_quantity_db(item_id, action)
 
     if item:
         await view_cart(update, context)
@@ -743,8 +808,8 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 
 def main() -> None:
     application = Application.builder().token(settings.TELEGRAM_BOT_TOKEN).build()
+    application.add_handler(CommandHandler("help", help_command))
 
-    # Сначала определяем ConversationHandler
     conv_handler = ConversationHandler(
         entry_points=[CallbackQueryHandler(start_order, pattern='^checkout$')],
         states={
@@ -780,10 +845,7 @@ def main() -> None:
         allow_reentry=True
     )
 
-    # Теперь добавляем его в application
     application.add_handler(conv_handler)
-
-    # Затем добавляем остальные обработчики
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(catalog, pattern='^catalog$'))
     application.add_handler(CallbackQueryHandler(show_product, pattern='^product_'))
@@ -793,11 +855,8 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(clear_cart_handler, pattern='^clear_cart$'))
     application.add_handler(CallbackQueryHandler(change_quantity, pattern='^(increase|decrease)_'))
     application.add_handler(CallbackQueryHandler(start, pattern='^main_menu$'))
-
-    # Обработчик ошибок
     application.add_error_handler(error_handler)
 
-    # Запуск бота
     application.run_polling()
 
 

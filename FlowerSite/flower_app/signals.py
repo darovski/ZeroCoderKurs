@@ -11,13 +11,13 @@ def register_signals():
         # Проверяем, что kwargs не None и содержит 'update_fields'
         if kwargs is not None and 'update_fields' in kwargs and kwargs['update_fields'] is not None:
             if 'status' in kwargs['update_fields']:
-                from ..tbot import update_order_status
+                from ..newbot import update_order_status
                 update_order_status(instance.id, instance.status)
 
     @receiver(post_save, sender=CustomUser)
     def notify_user_created(sender, instance, created, **kwargs):
         if created and instance.telegram_id:
-            from ..tbot import send_telegram_notification
+            from ..newbot import send_telegram_notification
             send_telegram_notification(
                 instance.telegram_id,
                 "✅ Ваш аккаунт успешно привязан к боту!"

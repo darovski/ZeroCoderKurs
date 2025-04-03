@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
-      <change afterPath="$PROJECT_DIR$/FlowerSite/FS_bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/newbot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowerSite/tbot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/FS_bot.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/bot_launcher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/runbot.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/newbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/newbot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowerSite/tbot.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,24 +49,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.Django Server.executor": "Run",
-    "Python.FS_bot.executor": "Run",
-    "Python.Telegram Bot.executor": "Run",
-    "Python.bot_launcher (1).executor": "Run",
-    "Python.bot_launcher.executor": "Run",
-    "Python.new_bot.executor": "Run",
-    "Python.newbot.executor": "Run",
-    "Python.orders_bot.executor": "Run",
-    "Python.tbot (1).executor": "Run",
-    "Python.tbot.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/darovski/PycharmProjects/ZeroCoderKurs/FlowerSite/flower_app/templates/flower_app"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.Django Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FS_bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Telegram Bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bot_launcher (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.bot_launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Python.new_bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.newbot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.orders_bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tbot (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.tbot.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/darovski/PycharmProjects/ZeroCoderKurs/FlowerSite/flower_app/templates/flower_app&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\flower_app\account" />
@@ -370,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743424171622</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="new project">
+      <option name="closed" value="true" />
+      <created>1743612897858</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743612897858</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
