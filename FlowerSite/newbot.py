@@ -199,9 +199,6 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 *Основные команды:*
 /start - Начать работу с ботом
 /help - Показать это сообщение
-/catalog - Показать каталог товаров
-/cart - Показать корзину
-/orders - Мои заказы
 
 *Как сделать заказ:*
 1. Выберите товары в каталоге

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="new project">
+    <list default="true" id="436bccdf-e814-4132-a2eb-bfd97a8afc94" name="Changes" comment="old revision of the project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/FS_bot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/FlowerSite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/flower_app/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowerSite/newbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowerSite/newbot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowerSite/tbot.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,105 +71,17 @@
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs" />
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite" />
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\flower_app" />
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app" />
       <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\account" />
-      <recent name="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app\templates\accounts" />
     </key>
   </component>
   <component name="RunManager" selected="Python.newbot">
     <configuration name="Run Server and Bot" type="CompoundRunConfigurationType">
       <toRun name="Django Server" type="PythonConfigurationType" />
       <toRun name="Telegram Bot" type="PythonConfigurationType" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Django Server" type="PythonConfigurationType" factoryName="Python">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="manage.py" />
-      <option name="PARAMETERS" value="runserver" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FS_bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/FS_bot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Telegram Bot" type="PythonConfigurationType" factoryName="Python">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\flower_app" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/flower_app/runbot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="bot_launcher (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/bot_launcher.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -220,68 +128,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tbot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowerSite/tbot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tbot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ZeroCoderKurs" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowerSite/flower_app" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\darovski\PycharmProjects\ZeroCoderKurs\FlowerSite\tbot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Compound.Run Server and Bot" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.Django Server" />
-      <item itemvalue="Python.Telegram Bot" />
       <item itemvalue="Python.newbot" />
-      <item itemvalue="Python.FS_bot" />
-      <item itemvalue="Python.tbot" />
-      <item itemvalue="Python.tbot (1)" />
-      <item itemvalue="Python.bot_launcher (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.newbot" />
-        <item itemvalue="Python.tbot (1)" />
-        <item itemvalue="Python.FS_bot" />
-        <item itemvalue="Python.tbot" />
-        <item itemvalue="Python.bot_launcher (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -373,12 +227,30 @@
       <option name="project" value="LOCAL" />
       <updated>1743612897858</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="revision of the project">
+      <option name="closed" value="true" />
+      <created>1743661178884</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743661178884</updated>
+    </task>
+    <task id="LOCAL-00011" summary="old revision of the project">
+      <option name="closed" value="true" />
+      <created>1743661318091</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743661318091</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new project" />
-    <option name="LAST_COMMIT_MESSAGE" value="new project" />
+    <MESSAGE value="revision of the project" />
+    <MESSAGE value="old revision of the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="old revision of the project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
